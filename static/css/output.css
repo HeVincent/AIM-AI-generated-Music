@@ -1,0 +1,10 @@
+.graph{
+    max-width: 752px;
+    max-height: 554px;
+    width: 30%;
+}
+li{
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 1%;
+}

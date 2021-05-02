@@ -1,0 +1,18 @@
+{% extends 'upper_menu.html' %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/home.css">
+{% endblock %}
+{% block content %}
+    <h1>AI-generated Music &langle;AIM&rangle;</h1>
+    <img src="/static/images/aim-logo2.svg" alt="AIM logo">
+    <p id="gen">Click any of these buttons to generate a MIDI file...</p>
+    <div id="form">
+        {% for genre in genres %}
+            <button onclick="post_req('{{ genre }}')">Get {{ genre }} MIDI Music</button>
+            <br/>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block scriptblock %}
+    <script src="/static/js/home.js"></script>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'upper_menu.html' %}
+{% block content %}
+    <p>Considering average resources a normal person has on their machine, we have used 26 midi files for each genre
+        to build the dataset. All these have been sourced from 8notes.com and musescore.com</p>
+    {% for genre in midis1 %}
+        <h1>{{ genre }} Dataset</h1>
+        <table>
+            <tr>
+                {% if genre == 'Anthem' %}
+                    <th>Country/Nation</th>
+                {% else %}
+                    <th>Artist/Composer</th>
+                {% endif %}
+                <th>Filename</th>
+            </tr>
+            {% for i in range(midis1[genre]['title'] |length) %}
+            <tr>
+                <td style="border-right: 2px solid #2a207b;">{{ midis1[genre]['artist'][i] }}</td>
+                <td>{{ midis1[genre]['title'][i] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br/>
+    {% endfor %}
+    {% for genre in midis2 %}
+        <h1>{{ genre }} Dataset</h1>
+        <table>
+            <tr>
+                {% if genre == 'Indie' %}
+                    <th>Artist/Composer</th>
+                {% endif %}
+                <th>Filename</th>
+            </tr>
+            {% for i in range(midis2[genre]['title'] |length) %}
+                <tr>
+                    {% if genre == 'Indie' and i == 0 %}
+                        <td rowspan="48" style="border-right: 5px solid #2a207b;">Adrian Talens</td>
+                    {% endif %}
+                    <td>{{ midis2[genre]['title'][i] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br/>
+    {% endfor %}
+{% endblock %}

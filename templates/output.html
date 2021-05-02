@@ -1,0 +1,24 @@
+{% extends 'upper_menu.html' %}
+{%  block head %}
+    <link rel="stylesheet" href="/static/css/output.css">
+{% endblock %}
+{% block content %}
+    <img src="/static/images/aim-logo.svg" alt="Model to Notes">
+    <h1>Observations and Results</h1>
+    <table>
+        <tr>
+            <th>Genre</th>
+            <th>Loss Curve</th>
+        </tr>
+        {% for genre in genres %}
+            <tr>
+                <td>{{ genre.capitalize() }}</td>
+                <td><img class='graph' src="/static/images/loss-per-epoch/{{ genre }}.png" alt="Loss curve for {{ genre }} model"></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br/>
+    <ul>
+        <li>Generating a MIDI file usually takes 25-45 seconds.</li>
+    </ul>
+{% endblock %}
