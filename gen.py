@@ -7,7 +7,7 @@ from time import time  # for unix time
 
 def midi_gen(genre):
     # genre_tempo =  o/p from tempocheck
-    genre_tempo = {'Anthem': 94, 'Classical': 103, 'Indie': 133, 'Pop n Rock': 103, 'Traditional': 109}
+    genre_tempo = {'Anthem': 74, 'Classical': 108, 'Indie': 105, 'Metal n Rock': 119, 'Pop n Rock': 114}
     # laoding model and total notes
     music_model = load_model(f"model_data/{genre}_model.hdf5")
     note_file = f'model_data/{genre}_total_notes'

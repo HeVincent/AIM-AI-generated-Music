@@ -12,7 +12,7 @@
         </tr>
         {% for genre in genres %}
             <tr>
-                <td>{{ genre.capitalize() }}</td>
+                <td>{{ genre }}</td>
                 <td><img class='graph' src="/static/images/loss-per-epoch/{{ genre }}.png" alt="Loss curve for {{ genre }} model"></td>
             </tr>
         {% endfor %}

@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, send_file  # for python server
 from gen import midi_gen  # for generating our midi files
-from os import listdir  # for navigating the directory
+from os import listdir, path, chdir  # for navigating the directory
+from ast import literal_eval  # for reading dictionary data
 
 app = Flask(__name__)
-routes = ['/midi_gen', '/export', '/', '/db', '/results']  # list of paths
+routes = ['/midi_gen', '/export', '/', '/db', '/results']  # list of url paths
 
 
 # utility routes
@@ -32,22 +33,13 @@ def home():
 
 @app.route(routes[3])
 def db():
-    # defining data structure for different genres
-    midis1 = {'Anthem': {'artist': list(), 'title': list()}, 'Classical': {'artist': list(), 'title': list()},
-              'Pop n Rock': {'artist': list(), 'title': list()}}
-    midis2 = {'Indie': {'title': list()},
-              'Traditional': {'title': list()}}
-
-    # populating the data by navigating directories
-    for genre in midis1:
-        for midi in listdir(f'midi_files/{genre}'):
-            songdet = midi.split(' - ')  # splitting song details into artist and filename
-            midis1[genre]['artist'].append(songdet[0])
-            midis1[genre]['title'].append(songdet[1])
-    for genre in midis2:
-        for midi in listdir(f'midi_files/{genre}'):
-            midis2[genre]['title'].append(midi)
-
+    with open('midis1', 'rb') as f1:
+        midis1 = literal_eval(f1.read().decode('utf-8'))
+    f1.close()
+    with open('midis2', 'rb') as f2:
+        midis2 = literal_eval(f2.read().decode('utf-8'))
+    f2.close()
+    print(midis1, midis2)
     return render_template("dataset.html", title='Dataset', midis1=midis1, midis2=midis2)
 
 
@@ -58,4 +50,5 @@ def results():
 
 
 if __name__ == '__main__':
+    chdir(path.dirname(path.abspath(__file__)))
     app.run(debug=True)
