@@ -33,7 +33,7 @@ def midi_gen(genre):
     pattern = net_input[start]
 
     # generate 200 elements
-    for iterator in range(150):
+    for iterator in range(200):
         prediction_input = reshape(pattern, (1, len(pattern), 1))
         prediction_input = prediction_input / float(unique_notes)  # normalize
 
@@ -74,7 +74,6 @@ def midi_gen(genre):
 
     midi_stream = stream.Stream(output_notes)
     midi_stream.insert(0, tempo.MetronomeMark(number=genre_tempo[genre]))
-    midi_stream.show('text')
     unixt = str(int(time()))
     filename = genre+unixt
     midi_stream.write('midi', fp=f"outputs/{filename}.mid")

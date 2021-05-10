@@ -9,16 +9,18 @@
         <tr>
             <th>Genre</th>
             <th>Loss Curve</th>
+            <th>MP3 outputs (after adding beats)</th>
         </tr>
         {% for genre in genres %}
             <tr>
-                <td>{{ genre }}</td>
-                <td><img class='graph' src="/static/images/loss-per-epoch/{{ genre }}.png" alt="Loss curve for {{ genre }} model"></td>
+                <td style="width: 5%">{{ genre }}</td>
+                <td style="width: 85%"><img class='graph' src="/static/images/loss-per-epoch/{{ genre }}.png" alt="Loss curve for {{ genre }} model"></td>
+                <td style="width: 10%">
+                    <audio controls><source src="/static/mp3/{{ genre }}1.mp3" type="audio/mpeg"></audio>
+                    <audio controls><source src="/static/mp3/{{ genre }}2.mp3" type="audio/mpeg"></audio>
+                </td>
             </tr>
         {% endfor %}
     </table>
     <br/>
-    <ul>
-        <li>Generating a MIDI file usually takes 25-45 seconds.</li>
-    </ul>
 {% endblock %}
